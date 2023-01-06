@@ -1,5 +1,5 @@
-import React,{useState} from "react";
-import { Routes, Route } from "react-router-dom"
+import React, { useState } from "react";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import Home from './Components/Home'
@@ -19,17 +19,18 @@ function getToken() {
 }
 function App() {
   const { token, setToken } = useToken();
-  if(!token) {
+  if (!token) {
     return <Login setToken={setToken} />
   }
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="about" element={<About />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="login" element={<Login />} />
-      </Routes>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
